@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { incNum, decNum } from "./redux/actions/index";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const myState = useSelector((state) => state.chagneTheNum);
+	console.log(myState);
+	const dispatch = useDispatch();
+
+	return (
+		<div className="main-container">
+			<h1>this is redux </h1>
+			<div className="container">
+				<button onClick={dispatch(decNum())}> - </button>
+				<p>{myState}</p>
+				<button onClick={dispatch(incNum())}> + </button>
+			</div>
+		</div>
+	);
+};
 
 export default App;
